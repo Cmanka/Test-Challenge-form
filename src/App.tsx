@@ -30,12 +30,12 @@ function App() {
             return;
         }
 
-        if (inputValue.length === minValue && !messages.includes(`Проверенно минимальное значение.`)) {
+        if (inputValue.trim().length === minValue && !messages.includes(`Проверенно минимальное значение.`)) {
             setMessages((prev)=>[...prev,`Проверенно минимальное значение.`]);
             return;
         }
 
-        if (inputValue.trim() === '' && !messages.includes('Проверенно пустое значение.')) {
+        if (inputValue === '' && !messages.includes('Проверенно пустое значение.')) {
             setMessages((prev)=>[...prev,'Проверенно пустое значение.']);
             return;
         }
