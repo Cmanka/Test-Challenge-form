@@ -4,9 +4,13 @@ import Confetti from 'react-confetti'
 const maxValue = 30;
 const minValue = 1;
 
+
+const sessionMessages = sessionStorage.getItem('messages');
+const defaultMessage =  sessionMessages ? JSON.parse( sessionMessages):[];
+
 function App() {
     const [inputValue, setInputValue] = useState('');
-    const [messages, setMessages] = useState<string[]>([]);
+    const [messages, setMessages] = useState<string[]>(defaultMessage);
     const [isExploding, setIsExploding] = useState(false);
     const [recycle,setRecycle] = useState(true);
 
@@ -16,8 +20,8 @@ function App() {
         const hasCyrillic = cyrillicRegex.test(inputValue);
         const hasLatin = latinRegex.test(inputValue);
 
-        if (inputValue.length > 0 && !messages.includes('Проверенно обычное значение.')) {
-            setMessages((prev)=>[...prev,'Проверенно обычное значение.']);
+        if (inputValue.length > 0 && !messages.includes('Проверен ввод значений.')) {
+            setMessages((prev)=>[...prev,'Проверен ввод значений.']);
             return;
         }
 
@@ -36,12 +40,12 @@ function App() {
             return;
         }
 
-        if (inputValue.length > minValue && inputValue.length < maxValue && !messages.includes('Проверенно граничное значение.')) {
-            setMessages((prev)=>[...prev,'Проверенно граничное значение.']);
+        if (inputValue.length && /[A-ZА-Я]/.test(inputValue) && !messages.includes('Проверенно значение с верхним регистром.')) {
+            setMessages((prev)=>[...prev,'Проверенно значение с верхним регистром.']);
             return;
         }
 
-        if (inputValue.length > 0 && !/[a-zA-Z]/.test(inputValue) && !/[аебийклмнопрстуфхцчшщ]/i.test(inputValue) && !messages.includes('Проверенны не буквы.')) {
+        if (inputValue.length > 0 && !/[a-zA-Zа-яА-Я]/.test(inputValue) && !messages.includes('Проверенны не буквы.')) {
             setMessages((prev)=>[...prev,'Проверенны не буквы.']);
             return;
         }
@@ -88,17 +92,23 @@ function App() {
         }
     },[isExploding])
 
+    useEffect(()=>{
+        if(messages){
+            sessionStorage.setItem('messages',JSON.stringify(messages))
+        }
+
+    },[messages])
+
   return (
     <div>
         <h1>MODSEN</h1>
         <h2>TEST CHALLENGE</h2>
         <div className='warningDiv'>
             <p>Что нужно сделать</p>
-            <span>Определите все тесты, необходимые для приведенного ниже сценария. На основе данных, введенных в поле, будут оцениваться тесты.</span>
-            <p>Что не следует тестировать</p>
-            <span>Разные браузеры, очень большие запросы, «неприятные слова», увеличение и уменьшение масштаба браузера. Не используйте средства автоматизации. Нельзя отключать стандартное API браузера для корректной работы приложения.</span>
-            <p>Спецификация</p>
-            <span>Пользователь должен заполнить необходимые данные для получения доступа, как обычный пользователь на форуме. Максимальная длина поля - 30.</span>
+            <span>Пользователь должен заполнить необходимое поле.
+На основе данных, введенных в поле, будут оцениваться тесты.
+Определите все тесты, необходимые для приведенного ниже сценария.
+Максимальная длина введеного значения - 30.</span>
         </div>
         <div>
             <form onSubmit={onSubmit}>
