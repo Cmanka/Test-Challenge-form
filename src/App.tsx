@@ -30,7 +30,7 @@ function App() {
             return;
         }
 
-        if (inputValue.length < minValue && !messages.includes(`Проверенно минимальное значение.`)) {
+        if (inputValue.length === minValue && !messages.includes(`Проверенно минимальное значение.`)) {
             setMessages((prev)=>[...prev,`Проверенно минимальное значение.`]);
             return;
         }
