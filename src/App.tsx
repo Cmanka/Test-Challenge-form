@@ -99,9 +99,9 @@ function App() {
       console.log(inputValue, copiedValue);
       if (
         inputValue === copiedValue &&
-        !messages.includes("Проверенна вставка.")
+        !messages.includes("Проверена вставка.")
       ) {
-        setMessages((prev) => [...prev, "Проверенна вставка."]);
+        setMessages((prev) => [...prev, "Проверена вставка."]);
       }
     });
   };
