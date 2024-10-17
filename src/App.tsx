@@ -29,36 +29,33 @@ function App() {
 
     if (
       inputValue.length > maxValue &&
-      !messages.includes(`Проверенно максимальное значение.`)
+      !messages.includes(`Проверено максимальное значение.`)
     ) {
-      setMessages((prev) => [...prev, `Проверенно максимальное значение.`]);
+      setMessages((prev) => [...prev, `Проверено максимальное значение.`]);
       return;
     }
 
     if (
       inputValue.trim().length === minValue &&
-      !messages.includes(`Проверенно минимальное значение.`)
+      !messages.includes(`Проверено минимальное значение.`)
     ) {
-      setMessages((prev) => [...prev, `Проверенно минимальное значение.`]);
+      setMessages((prev) => [...prev, `Проверено минимальное значение.`]);
       return;
     }
 
-    if (
-      inputValue === "" &&
-      !messages.includes("Проверенно пустое значение.")
-    ) {
-      setMessages((prev) => [...prev, "Проверенно пустое значение."]);
+    if (inputValue === "" && !messages.includes("Проверено пустое значение.")) {
+      setMessages((prev) => [...prev, "Проверено пустое значение."]);
       return;
     }
 
     if (
       inputValue.length &&
       /[A-ZА-Я]/.test(inputValue) &&
-      !messages.includes("Проверенно значение с верхним регистром.")
+      !messages.includes("Проверено значение с верхним регистром.")
     ) {
       setMessages((prev) => [
         ...prev,
-        "Проверенно значение с верхним регистром.",
+        "Проверено значение с верхним регистром.",
       ]);
       return;
     }
@@ -75,9 +72,9 @@ function App() {
     if (
       hasCyrillic &&
       hasLatin &&
-      !messages.includes("Проверенно смесь языков.")
+      !messages.includes("Проверено смесь языков.")
     ) {
-      setMessages((prev) => [...prev, "Проверенно смесь языков."]);
+      setMessages((prev) => [...prev, "Проверено смесь языков."]);
       return;
     }
 
@@ -165,7 +162,7 @@ function App() {
         </form>
         <div>
           <p>
-            Проверенно случаев:{" "}
+            Проверено случаев:{" "}
             <span style={{ color: messages.length > 0 ? "green" : "white" }}>
               {messages.length}
             </span>{" "}
