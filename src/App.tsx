@@ -83,18 +83,18 @@ function App() {
 
     if (
       /\s/.test(inputValue) &&
-      !messages.includes("Проверенны пробелы в словах.")
+      !messages.includes("Проверены пробелы в словах.")
     ) {
-      setMessages((prev) => [...prev, "Проверенны пробелы в словах."]);
+      setMessages((prev) => [...prev, "Проверены пробелы в словах."]);
       return;
     }
 
     if (
       inputValue.length > 0 &&
       /^\s*$/.test(inputValue) &&
-      !messages.includes("Проверенны только пробелы.")
+      !messages.includes("Проверены только пробелы.")
     ) {
-      setMessages((prev) => [...prev, "Проверенны только пробелы."]);
+      setMessages((prev) => [...prev, "Проверены только пробелы."]);
       return;
     }
 
