@@ -66,9 +66,9 @@ function App() {
     if (
       inputValue.length > 0 &&
       !/[a-zA-Zа-яА-Я]/.test(inputValue) &&
-      !messages.includes("Проверенны не буквы.")
+      !messages.includes("Проверены не буквы.")
     ) {
-      setMessages((prev) => [...prev, "Проверенны не буквы."]);
+      setMessages((prev) => [...prev, "Проверены не буквы."]);
       return;
     }
 
